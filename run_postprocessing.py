@@ -17,20 +17,20 @@ from dask.distributed import Client
 ## Make this script use argparse to accept a single string artument called expt
 import autolib as al
 # client = Client(n_workers=28)
-client = Client()
 
 import argparse
 
 if __name__ == "__main__":
 
-
+    client = Client()
+    print(client)
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-e','--expt', type=str,
     )
     args = parser.parse_args()
     expt = args.expt
 
-
+    print(expt)
 
 
 
@@ -74,7 +74,7 @@ if __name__ == "__main__":
             axes[i] = np.array(axes[i])
         return axes
 
-
+    print("define experiment")
 
     class expt:
         def __init__(self,x,y,nlayers,variable,var_value,topo,common):
@@ -368,7 +368,7 @@ if __name__ == "__main__":
     k = [20]
     topos = ["ridge"]
 
-
+    print("Populate experiments")
     for nlayers in k:
         for topo in topos:
             # ## HEIGHTS
@@ -409,10 +409,7 @@ if __name__ == "__main__":
                     run = expt(x,y,nlayers,"duration",duration,topo,"topog")
                     expts.append(run)
 
-
-    from IPython.display import clear_output
-
-
+    print("Start main loop")
     tot = len(expts)
     curr = 0
     for i in expts:
