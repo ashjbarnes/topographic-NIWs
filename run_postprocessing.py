@@ -28,9 +28,9 @@ if __name__ == "__main__":
     parser.add_argument('-e','--expt', type=str,
     )
     args = parser.parse_args()
-    expt = args.expt
+    expt_name = args.expt
 
-    print(expt)
+    print(expt_name)
 
 
 
@@ -391,19 +391,19 @@ if __name__ == "__main__":
             # Here we recycle the wind forcing since it doesn't change with topo
             ## FORCING WIDTHS
 
-            if expt == "forcing_latwidth":
+            if expt_name == "forcing_latwidth":
 
                 for forcing_width in forcing_widths:
                     run = expt(x,y,nlayers,"forcing_latwidth",forcing_width,topo,"topog")
                     expts.append(run)
 
-            if expt == "strength":
+            if expt_name == "strength":
             ## STRENGTHS
                 for strength in strengths:
                     run = expt(x,y,nlayers,"strength",strength,topo,"topog")
                     expts.append(run)
 
-            if expt == "duration":
+            if expt_name == "duration":
                     ## DURATIONS
                 for duration in durations:
                     run = expt(x,y,nlayers,"duration",duration,topo,"topog")
@@ -412,6 +412,7 @@ if __name__ == "__main__":
     print("Start main loop")
     tot = len(expts)
     curr = 0
+    print(expts)
     for i in expts:
         print(f"{curr}/{tot} {100 * curr/tot}% complete. \t\t Processing {i.runname}. ")
         i.process_output(foldername = expt_suite_name , merid = True)
