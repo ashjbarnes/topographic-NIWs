@@ -392,20 +392,27 @@ if __name__ == "__main__":
             ## FORCING WIDTHS
 
             if expt_name == "forcing_latwidth":
-
+                
                 for forcing_width in forcing_widths:
+                    if os.path.exists(f"/g/data/v45/ab8992/bottom_iwbs/revision/{run.runname}"):
+                        print(f"Skipping {run.runname}")
+                        continue
                     run = expt(x,y,nlayers,"forcing_latwidth",forcing_width,topo,"topog")
                     expts.append(run)
 
             if expt_name == "strength":
             ## STRENGTHS
                 for strength in strengths:
+                    if os.path.exists(f"/g/data/v45/ab8992/bottom_iwbs/revision/{run.runname}"):
+                        print(f"Skipping {run.runname}")
                     run = expt(x,y,nlayers,"strength",strength,topo,"topog")
                     expts.append(run)
 
             if expt_name == "duration":
                     ## DURATIONS
                 for duration in durations:
+                    if os.path.exists(f"/g/data/v45/ab8992/bottom_iwbs/revision/{run.runname}"):
+                        print(f"Skipping {run.runname}")
                     run = expt(x,y,nlayers,"duration",duration,topo,"topog")
                     expts.append(run)
 
