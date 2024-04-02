@@ -405,6 +405,7 @@ if __name__ == "__main__":
                 for strength in strengths:
                     if os.path.exists(f"/g/data/v45/ab8992/bottom_iwbs/revision/{run.runname}"):
                         print(f"Skipping {run.runname}")
+                        continue
                     run = expt(x,y,nlayers,"strength",strength,topo,"topog")
                     expts.append(run)
 
@@ -413,6 +414,7 @@ if __name__ == "__main__":
                 for duration in durations:
                     if os.path.exists(f"/g/data/v45/ab8992/bottom_iwbs/revision/{run.runname}"):
                         print(f"Skipping {run.runname}")
+                        continue
                     run = expt(x,y,nlayers,"duration",duration,topo,"topog")
                     expts.append(run)
 
