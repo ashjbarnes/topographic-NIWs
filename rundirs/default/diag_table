@@ -1,0 +1,41 @@
+"Ashley Channel Multiridge Bottom"
+1 1 1 0 0 0
+
+# filename , saving frequency , saving freq unit , always 1 , time units , time axis name 
+#"prog_hourly",     1, "hours",  1, "hours", "time",
+"u_10min",      10, "minutes", 1  , "minutes" , "time",
+"v_10min",      10, "minutes", 1  , "minutes" , "time",
+"taux_10min",      10, "minutes", 1  , "minutes" , "time",
+"e_10min",      10, "minutes", 1  , "minutes" , "time",
+
+#"prog",     1, "days",  1, "days", "time",
+
+
+# Instantaneous diagnostics
+#"ocean_model","u",   "u",   "prog_hourly","all",.false.,"none",2
+#"ocean_model","v",   "v",   "prog_hourly","all",.false.,"none",2
+#"ocean_model","taux",   "taux",   "prog_hourly","all",.false.,"none",2
+#"ocean_model","e","e","prog_hourly","all",.false.,"none",2
+
+"ocean_model","u",   "u",   "u_10min","all",.false.,"none",2
+"ocean_model","v",   "v",   "v_10min","all",.false.,"none",2
+"ocean_model","taux",   "taux",   "taux_10min","all",.false.,"none",2
+"ocean_model","e","e","e_10min","all",.false.,"none",2
+
+# Instantaneous diagnostics
+#"ocean_model","u",   "u",   "prog_15min","all",.false.,"none",2
+#"ocean_model","v",   "v",   "prog_15min","all",.false.,"none",2
+#"ocean_model","taux",   "taux",   "prog_15min","all",.false.,"none",2
+#"ocean_model","e","e","prog_15min","all",.false.,"none",2
+
+
+# Instantaneous diagnostics
+#"ocean_model","u",   "u",   "prog","all",.false.,"none",2
+#"ocean_model","v",   "v",   "prog","all",.false.,"none",2
+#"ocean_model","h",   "h",   "prog","all",.false.,"none",2
+#"ocean_model","PV",   "PV",   "prog","all",.false.,"none",2
+#"ocean_model","taux_bot",   "taux_bot",   "prog","all",.false.,"none",2
+#"ocean_model","tauy_bot",   "tauy_bot",   "prog","all",.false.,"none",2
+#"ocean_model","taux",   "taux",   "prog","all",.false.,"none",2
+#"ocean_model","pbo","pbo","prog","all",.false.,"none",2
+#"ocean_model","e","e","prog","all",.false.,"none",2
