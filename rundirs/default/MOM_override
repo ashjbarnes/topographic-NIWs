@@ -1,11 +1,4 @@
 ! FORCING_DURATION 10
 
-#override BETA = 0.0
 #override ADIABATIC = True
 #override RHO_0 = 1027.0
-#override NJGLOBAL=500
-#override NIGLOBAL=2000
-#override LENLON = 4000.0
-#override WESTLON = -2000.0
-#override LENLAT = 1000.0
-#override WESTLAT = -500.0
