@@ -1,4 +1,12 @@
 ! FORCING_DURATION 10
 
+
+! DIAGNOSTIC COORDINATE
+
+NUM_DIAG_COORDS = 1
+DIAG_COORDS = "z Z ZSTAR" !
+
+DIAG_COORD_DEF_Z = "FILE:vcoord.nc,interfaces=zi" ! default = "WOA09"
+
 #override ADIABATIC = True
 #override RHO_0 = 1027.0
