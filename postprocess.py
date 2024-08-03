@@ -2,6 +2,9 @@ from pathlib import Path
 import os
 import sys
 import xarray as xr
+import argparse
+from dask.distributed import Client
+
 basepath = Path.cwd().absolute()
 
 
@@ -49,3 +52,13 @@ def postprocess(rundir):
 
         zonal.to_netcdf(archive / "zonal" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
         merid.to_netcdf(archive / "merid" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-e', '--expt', type=str, help='Experiment',default = "common")
+args = parser.parse_args()
+if __name__ == "__main__":
+    client = Client(threads_per_worker = 2)
+
+    postprocess(Path(args.expt))
+
