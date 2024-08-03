@@ -14,8 +14,8 @@ def postprocess(rundir):
     archive = basepath / "outputdir" / rundir.name
     print(archive)
     print(archive.absolute())
-    (archive / "zonal").mkdir(exist_ok=True)
-    (archive / "merid").mkdir(exist_ok=True)
+    (archive / "zonal").mkdirs(exist_ok=True)
+    (archive / "merid").mkdirs(exist_ok=True)
 
     ## Find forcing duration
 
