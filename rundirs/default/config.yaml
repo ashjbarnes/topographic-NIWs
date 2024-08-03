@@ -30,3 +30,6 @@ collate: False
 #userscripts:
 #    archive: sync_output_to_gdata.sh
 
+#postscript:
+#  postprocessing.sh
+
