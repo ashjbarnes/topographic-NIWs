@@ -18,10 +18,10 @@ def postprocess(rundir):
     (archive / "merid").mkdir(exist_ok=True,parents = True)
 
     ## Find forcing duration
-
+    duration = 10
     file = open(rundir / "MOM_override")
     for line in file.readlines():
-        if "forcing_duration" in line:
+        if "FORCING_DURATION" in line:
             duration = int(line.split(" ")[-1])
             break
     file.close()
