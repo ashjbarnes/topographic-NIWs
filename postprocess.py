@@ -10,6 +10,7 @@ basepath = Path.cwd().absolute()
 
 def postprocess(rundir):
     # Rundir is a path object
+    basepath = rundir.parent.parent.parent ## Go to root of the repo
     archive = basepath / "outputdir" / rundir.name
     (archive / "zonal").mkdir(exist_ok=True)
     (archive / "merid").mkdir(exist_ok=True)
