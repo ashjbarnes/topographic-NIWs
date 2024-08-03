@@ -12,6 +12,8 @@ def postprocess(rundir):
     # Rundir is a path object
     basepath = rundir.parent.parent.parent.absolute() ## Go to root of the repo
     archive = basepath / "outputdir" / rundir.name
+    print(archive)
+    print(archive.absolute())
     (archive / "zonal").mkdir(exist_ok=True)
     (archive / "merid").mkdir(exist_ok=True)
 
