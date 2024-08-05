@@ -210,3 +210,4 @@ MOM Date      1/01/01 00:00:00      0: En 7.915211E-16, MaxCFL  0.00000, Mass 6.
     Total Mass:   6.5682492247377994E+19, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
 NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    1.528E-01
 NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    2.778E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    3.750E-01

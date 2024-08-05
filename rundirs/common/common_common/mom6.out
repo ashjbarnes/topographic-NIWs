@@ -243,3 +243,4 @@ WARNING from PE     0: Unused line in MOM_override : #override WESTLAT = -2000.0
 
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200000000.
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200100000.
+NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  204000000.
