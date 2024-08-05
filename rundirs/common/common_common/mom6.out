@@ -251,3 +251,4 @@ NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to
 NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    2.778E-01
 NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    3.750E-01
 NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.444E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.861E-01

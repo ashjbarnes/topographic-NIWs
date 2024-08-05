@@ -1,0 +1,8 @@
+format: yamanifest
+version: 1.0
+---
+work/noforcing_symmetric:
+  fullpath: /g/data/v45/ab8992/mom_executables/noforcing_symmetric
+  hashes:
+    binhash: 1329282fe0b0e51ec58c6f9c77c835e4
+    md5: 0dc4dcb0ea6be9d868139a0dfbe2dabf
