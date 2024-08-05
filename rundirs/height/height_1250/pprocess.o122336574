@@ -1,0 +1,16 @@
+/home/149/ab8992/topographic-NIWs/outputdir/height_1250
+/home/149/ab8992/topographic-NIWs/outputdir/height_1250
+/home/149/ab8992/topographic-NIWs/rundirs/height/height_1250/archive/output000
+
+======================================================================================
+                  Resource Usage on 2024-08-05 18:24:18:
+   Job Id:             122336574.gadi-pbs
+   Project:            v45
+   Exit Status:        1
+   Service Units:      1.32
+   NCPUs Requested:    28                     NCPUs Used: 28              
+                                           CPU Time Used: 00:02:01        
+   Memory Requested:   112.0GB               Memory Used: 2.15GB          
+   Walltime requested: 06:00:00            Walltime Used: 00:02:16        
+   JobFS requested:    100.0MB                JobFS used: 0B              
+======================================================================================

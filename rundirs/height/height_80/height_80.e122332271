@@ -1,0 +1,21 @@
+Currently Loaded Modulefiles:
+ 1) pbs   2) openmpi/4.0.1  
+fatal: Unable to create '/home/149/ab8992/topographic-NIWs/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+Traceback (most recent call last):
+  File "/g/data/hh5/public/apps/miniconda3/envs/analysis3/bin/payu-run", line 10, in <module>
+    sys.exit(runscript())
+  File "/g/data/hh5/public/apps/miniconda3/envs/analysis3-24.01/lib/python3.10/site-packages/payu/subcommands/run_cmd.py", line 134, in runscript
+    expt.run()
+  File "/g/data/hh5/public/apps/miniconda3/envs/analysis3-24.01/lib/python3.10/site-packages/payu/experiment.py", line 606, in run
+    self.runlog.commit()
+  File "/g/data/hh5/public/apps/miniconda3/envs/analysis3-24.01/lib/python3.10/site-packages/payu/runlog.py", line 88, in commit
+    subprocess.check_call(shlex.split(cmd), stdout=f_null,
+  File "/g/data/hh5/public/apps/miniconda3/envs/analysis3-24.01/lib/python3.10/subprocess.py", line 369, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['git', 'add', 'manifests/input.yaml']' returned non-zero exit status 128.

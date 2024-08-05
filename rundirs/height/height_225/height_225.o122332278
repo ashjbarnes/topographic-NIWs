@@ -1,0 +1,36 @@
+laboratory path:  /scratch/v45/ab8992/mom6
+binary path:  /scratch/v45/ab8992/mom6/bin
+input path:  /scratch/v45/ab8992/mom6/input
+work path:  /scratch/v45/ab8992/mom6/work
+archive path:  /scratch/v45/ab8992/mom6/archive
+nruns: 1 nruns_per_submit: 1 subrun: 1
+payu: work path already exists.
+      Sweeping as --force option is True.
+Moving log height_225.o122332134
+Moving log height_225.e122332134
+Removing work path /scratch/v45/ab8992/mom6/work/height_225
+Removing symlink /home/149/ab8992/topographic-NIWs/rundirs/height/height_225/work
+Loading input manifest: manifests/input.yaml
+Loading restart manifest: manifests/restart.yaml
+Loading exe manifest: manifests/exe.yaml
+Setting up mom6
+Checking exe and input manifests
+Updating full hashes for 1 files in manifests/exe.yaml
+Creating restart manifest
+Writing manifests/restart.yaml
+Writing manifests/exe.yaml
+payu: Found modules in /opt/Modules/v4.3.0
+git add /home/149/ab8992/topographic-NIWs/rundirs/height/height_225/config.yaml
+
+======================================================================================
+                  Resource Usage on 2024-08-05 17:43:01:
+   Job Id:             122332278.gadi-pbs
+   Project:            v45
+   Exit Status:        1
+   Service Units:      1.52
+   NCPUs Requested:    912                    NCPUs Used: 912             
+                                           CPU Time Used: 00:00:08        
+   Memory Requested:   3.56TB                Memory Used: 520.88MB        
+   Walltime requested: 06:00:00            Walltime Used: 00:00:03        
+   JobFS requested:    1.86GB                 JobFS used: 0B              
+======================================================================================

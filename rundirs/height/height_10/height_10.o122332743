@@ -1,0 +1,48 @@
+laboratory path:  /scratch/v45/ab8992/mom6
+binary path:  /scratch/v45/ab8992/mom6/bin
+input path:  /scratch/v45/ab8992/mom6/input
+work path:  /scratch/v45/ab8992/mom6/work
+archive path:  /scratch/v45/ab8992/mom6/archive
+nruns: 1 nruns_per_submit: 1 subrun: 1
+payu: work path already exists.
+      Sweeping as --force option is True.
+Moving log height_10.o122332263
+Moving log height_10.e122332263
+Removing work path /scratch/v45/ab8992/mom6/work/height_10
+Removing symlink /home/149/ab8992/topographic-NIWs/rundirs/height/height_10/work
+Loading input manifest: manifests/input.yaml
+Loading restart manifest: manifests/restart.yaml
+Loading exe manifest: manifests/exe.yaml
+Setting up mom6
+Checking exe and input manifests
+Updating full hashes for 1 files in manifests/exe.yaml
+Creating restart manifest
+122336292.gadi-pbs
+Writing manifests/restart.yaml
+Writing manifests/exe.yaml
+payu: Found modules in /opt/Modules/v4.3.0
+git add /home/149/ab8992/topographic-NIWs/rundirs/height/height_10/config.yaml
+git add /home/149/ab8992/topographic-NIWs/rundirs/height/height_10/input.nml
+git add /home/149/ab8992/topographic-NIWs/rundirs/height/height_10/MOM_input
+git add /home/149/ab8992/topographic-NIWs/rundirs/height/height_10/diag_table
+git add /home/149/ab8992/topographic-NIWs/rundirs/height/height_10/MOM_override
+git add manifests/input.yaml
+git add manifests/restart.yaml
+git add manifests/exe.yaml
+git commit -am "2024-08-05 17:45:42: Run 0"
+TODO: Check if commit is unchanged
+mpirun  -wdir /scratch/v45/ab8992/mom6/work/height_10 -np 900  /scratch/v45/ab8992/mom6/work/height_10/noforcing_symmetric
+payu: Found modules in /opt/Modules/v4.3.0
+
+======================================================================================
+                  Resource Usage on 2024-08-05 18:17:37:
+   Job Id:             122332743.gadi-pbs
+   Project:            v45
+   Exit Status:        0
+   Service Units:      971.79
+   NCPUs Requested:    912                    NCPUs Used: 912             
+                                           CPU Time Used: 468:08:23       
+   Memory Requested:   3.56TB                Memory Used: 587.17GB        
+   Walltime requested: 06:00:00            Walltime Used: 00:31:58        
+   JobFS requested:    1.86GB                 JobFS used: 8.16MB          
+======================================================================================
