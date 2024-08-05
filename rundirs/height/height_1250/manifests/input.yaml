@@ -1,0 +1,18 @@
+format: yamanifest
+version: 1.0
+---
+work/INPUT/driver-layers-topo-densities.nc:
+  fullpath: /home/149/ab8992/topographic-NIWs/inputdir/height_1250/driver-layers-topo-densities.nc
+  hashes:
+    binhash: dfdb2de59d302d8f1b72ddc0fab01b3b
+    md5: 5442865668ce91348b5af410cfff4503
+work/INPUT/storm_windstress.nc:
+  fullpath: /home/149/ab8992/topographic-NIWs/inputdir/common/storm_windstress.nc
+  hashes:
+    binhash: cd82b2dec18300611efcaa261d100620
+    md5: 6329fb337ef30ce2beeaf261c6a39926
+work/INPUT/vcoord.nc:
+  fullpath: /home/149/ab8992/topographic-NIWs/inputdir/common/vcoord.nc
+  hashes:
+    binhash: eb8bd31aa8a048aa3aa7030080878b23
+    md5: c8059ce31f7ee296c6941d949ba1e70c

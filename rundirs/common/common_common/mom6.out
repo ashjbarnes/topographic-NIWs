@@ -16,7 +16,7 @@ NOTE from PE     0: callTree: o Program MOM_main, MOM_driver.F90
  CALENDAR        = NOLEAP          ,
  MONTHS  =           0,
  DAYS    =           0,
- HOURS   =           1,
+ HOURS   =          10,
  MINUTES =           0,
  SECONDS =           0,
  OCEAN_NTHREADS  =           1,
@@ -94,6 +94,7 @@ whalo =    1, ehalo =    1, shalo =    1, nhalo =    1
 
 WARNING from PE     0: MOM_file_parser : ADIABATIC over-ridden more times than is permitted. Line: 'ADIABATIC = True' in file MOM_override is being ignored.
 
+NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to    4004001.
  MOM_in domain decomposition
 whalo =    3, ehalo =    3, shalo =    3, nhalo =    3
   X-AXIS =   80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80
@@ -106,20 +107,13 @@ whalo =    1, ehalo =    1, shalo =    1, nhalo =    1
              40
   Y-AXIS =   40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
              40
-NOTE from PE     0: MOM_restart: MOM run restarted using : INPUT/MOM.res.nc
-NOTE from PE     0: MOM_restart: MOM run restarted using : INPUT/MOM.res_1.nc
-NOTE from PE     0: MOM_restart: MOM run restarted using : INPUT/MOM.res_2.nc
-NOTE from PE     0: MOM_restart: MOM run restarted using : INPUT/MOM.res_3.nc
-NOTE from PE     0: MOM_restart: MOM run restarted using : INPUT/MOM.res_4.nc
-NOTE from PE     0: MOM_restart: MOM run restarted using : INPUT/MOM.res_5.nc
-NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to     320000.
-NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to     324000.
 
 WARNING from PE     0: MOM_file_parser : ADIABATIC over-ridden more times than is permitted. Line: 'ADIABATIC = True' in file MOM_override is being ignored.
 
 
 WARNING from PE     0: MOM_file_parser : RHO_0 over-ridden more times than is permitted. Line: 'RHO_0 = 1027.0' in file MOM_override is being ignored.
 
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    0.000E+00
  MOM_in domain decomposition
 whalo =    3, ehalo =    3, shalo =    3, nhalo =    3
   X-AXIS =   80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80  80
@@ -247,8 +241,21 @@ WARNING from PE     0: Unused line in MOM_input : ARCHAIC_OMIP_FORCING_FILE = Fa
 
 WARNING from PE     0: Unused line in MOM_override : #override WESTLAT = -2000.0
 
-MOM Date      1/01/01 10:00:00      0: En 9.932254E-07, MaxCFL  0.04415, Mass 6.536393797902E+19
-    Total Energy: 42CD85D03DD52437  6.4921123138120430E+13
-    Total Mass:   6.5363937979024032E+19, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200000000.
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200100000.
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  204000000.
+MOM Date      1/01/01 00:00:00      0: En 1.562284E-15, MaxCFL  0.00000, Mass 6.536393797902E+19
+    Total Energy: 40F8EE50281CE403  1.0211700979317729E+05
+    Total Mass:   6.5363937979024007E+19, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    7.986E-02
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    1.528E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    2.188E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    2.778E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    3.299E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    3.750E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.132E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.444E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.688E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.861E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.965E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    5.000E-01

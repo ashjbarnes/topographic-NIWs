@@ -1,0 +1,26 @@
+"Ashley Channel Multiridge Bottom"
+1 1 1 0 0 0
+
+# filename , saving frequency , saving freq unit , always 1 , time units , time axis name 
+#"prog_hourly",     1, "hours",  1, "hours", "time",
+"u",	20, "minutes", 1  , "seconds" , "time",
+"v",	20, "minutes", 1  , "seconds" , "time",
+"taux",	20, "minutes", 1  , "seconds" , "time",
+"e",	20, "minutes", 1  , "seconds" , "time",
+"rho",    20, "minutes", 1  , "seconds" , "time",
+#"pbo",    10, "minutes", 1  , "seconds" , "time",
+#"prog",     1, "days",  1, "days", "time",
+
+
+# Instantaneous diagnostics
+#"ocean_model","u",   "u",   "prog_hourly","all",.false.,"none",2
+#"ocean_model","v",   "v",   "prog_hourly","all",.false.,"none",2
+#"ocean_model","taux",   "taux",   "prog_hourly","all",.false.,"none",2
+#"ocean_model","e","e","prog_hourly","all",.false.,"none",2
+
+"ocean_model","u",   "u",   "u","all",.false.,"none",2
+"ocean_model","v",   "v",   "v","all",.false.,"none",2
+"ocean_model","Rho_cv",   "rho",   "rho","all",.false.,"none",1
+"ocean_model","taux",   "taux",   "taux","all",.false.,"none",2
+"ocean_model","e","e","e","all",.false.,"none",2
+#"ocean_model","pbo","pbo","pbo","all",.false.,"none",1
