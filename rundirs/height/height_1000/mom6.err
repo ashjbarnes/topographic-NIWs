@@ -1,0 +1,114 @@
+
+WARNING from PE     0: MOM_file_parser : ADIABATIC over-ridden.  Line: 'ADIABATIC = True' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : NIGLOBAL over-ridden.  Line: 'NIGLOBAL = 2000' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : NJGLOBAL over-ridden.  Line: 'NJGLOBAL = 2000' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : LENLAT over-ridden.  Line: 'LENLAT = 4000.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : WESTLON over-ridden.  Line: 'WESTLON = -2000.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : LENLON over-ridden.  Line: 'LENLON = 4000.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : NK over-ridden.  Line: 'NK = 50' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : RHO_0 over-ridden.  Line: 'RHO_0 = 1027.0' in file MOM_override.
+
+
+WARNING from PE     0: Unused line in MOM_input : ISOTROPIC = False
+
+
+WARNING from PE     0: Unused line in MOM_input : EQUATOR_REFERENCE = False
+
+
+WARNING from PE     0: Unused line in MOM_input : GINT = 9.8E-03
+
+
+WARNING from PE     0: Unused line in MOM_input : #OBC_COMPUTED_VORTICITY = True
+
+
+WARNING from PE     0: Unused line in MOM_input : C_P = 3925.0
+
+
+WARNING from PE     0: Unused line in MOM_input : KH_VEL_SCALE = 0.01
+
+
+WARNING from PE     0: Unused line in MOM_input : SMAG_BI_CONST = 0.06
+
+
+WARNING from PE     0: Unused line in MOM_input : KD = 0.0
+
+
+WARNING from PE     0: Unused line in MOM_input : KD_MAX = 0.0
+
+
+WARNING from PE     0: Unused line in MOM_input : KD_MIN = 0
+
+
+WARNING from PE     0: Unused line in MOM_input : TKE_DECAY = 10.0
+
+
+WARNING from PE     0: Unused line in MOM_input : BBL_MIXING_AS_MAX = False
+
+
+WARNING from PE     0: Unused line in MOM_input : USE_LOTW_BBL_DIFFUSIVITY = False
+
+
+WARNING from PE     0: Unused line in MOM_input : HENYEY_IGW_BACKGROUND = False
+
+
+WARNING from PE     0: Unused line in MOM_input : N2_FLOOR_IOMEGA2 = 0.0
+
+
+WARNING from PE     0: Unused line in MOM_input : INT_TIDE_DISSIPATION = False
+
+
+WARNING from PE     0: Unused line in MOM_input : FLUXCONST = 0.5
+
+
+WARNING from PE     0: Unused line in MOM_input : BOUND_SALINITY = True
+
+
+WARNING from PE     0: Unused line in MOM_input : FRAZIL = False
+
+
+WARNING from PE     0: Unused line in MOM_input : USER_CHANGE_DIFFUSIVITY = True
+
+
+WARNING from PE     0: Unused line in MOM_input : USER_KD_FACTOR = 19
+
+
+WARNING from PE     0: Unused line in MOM_input : USER_KD_DECAY_DIST = 100.0
+
+
+WARNING from PE     0: Unused line in MOM_input : MAX_RINO_IT = 25
+
+
+WARNING from PE     0: Unused line in MOM_input : USE_CONVECTION = FALSE
+
+
+WARNING from PE     0: Unused line in MOM_input : PASSIVE = False
+
+
+WARNING from PE     0: Unused line in MOM_input : KD_CONV = 100.0
+
+
+WARNING from PE     0: Unused line in MOM_input : MAX_ENT_IT = 20
+
+
+WARNING from PE     0: Unused line in MOM_input : TOLERANCE_ENT = 1.0E-05
+
+
+WARNING from PE     0: Unused line in MOM_input : ARCHAIC_OMIP_FORCING_FILE = False
+
+
+WARNING from PE     0: Unused line in MOM_override : #override WESTLAT = -2000.0
+
