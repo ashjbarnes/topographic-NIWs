@@ -35,9 +35,9 @@ def setup_mom6(exptname,perturbation,overrides = [],walltime = None,default_dir 
             
         if "input" in config[line][0:10]:
             if perturbation != "common":
-                config[line] = f"input:\n     -{basepath / 'inputdir' / (exptname + '_' + perturbation)}\n     -{basepath / 'inputdir' / 'common'}\n"
+                config[line] = f"input:\n    - {basepath / 'inputdir' / (exptname + '_' + perturbation)}\n    - {basepath / 'inputdir' / 'common'}\n"
             else:
-                config[line] = f"input:\n     -{basepath / 'inputdir' / 'common'}\n"
+                config[line] = f"input:\n    - {basepath / 'inputdir' / 'common'}\n"
         if "walltime" in config[line][0:10] and walltime != None:
             config[line] = "walltime: " + str(walltime)
     file = open(runpath / "config.yaml","w")
