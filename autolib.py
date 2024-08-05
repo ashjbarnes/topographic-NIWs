@@ -349,6 +349,7 @@ class expt:
         self.x = x
         self.y = y
         self.overrides = overrides
+        self.path = basepath / "rundirs" / self.variable / f"{self.variable}_{self.var_value}"
 
     def make_inputs(self):
     ## First, determine what needs to be generated. Wind, or topo    
@@ -391,17 +392,20 @@ class expt:
         return
 
     def run(self,n = 1):
-        path = basepath / "rundirs" / self.variable / f"{self.variable}_{self.var_value}"
-        print("RUNNING: " + path.name)
+        print("RUNNING: " + self.path.name)
         subprocess.run(
-           f"payu setup -f",shell= True,cwd = str(path)
+           f"payu setup -f",shell= True,cwd = str(self.path)
         )
 
         subprocess.run(
-           f"payu run -f -n {n}",shell= True,cwd = str(path)
+           f"payu run -f -n {n}",shell= True,cwd = str(self.path)
         )
         return
 
+    def load(self):
+        zonal = xr.open_mfdataset([i for i in (basepath / "outputdir" / f"{self.variable}_{self.var_value}" / "zonal").glob("*.nc")],decode_times = False,parallel = True)
+        merid = xr.open_mfdataset([i for i in (basepath / "outputdir" / f"{self.variable}_{self.var_value}" / "merid").glob("*.nc")],decode_times = False,parallel = True)
+        return {"zonal":zonal,"merid":merid}
 
 
     def process_output(self,xrange = [-100,100], yrange = [-1510,-1490],tlim = None,outpath = None,integrate = True):
