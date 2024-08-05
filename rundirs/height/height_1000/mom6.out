@@ -204,3 +204,9 @@ WARNING from PE     0: Unused line in MOM_override : #override WESTLAT = -2000.0
 
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200000000.
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200100000.
+NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  204000000.
+MOM Date      1/01/01 00:00:00      0: En 7.915211E-16, MaxCFL  0.00000, Mass 6.568249224738E+19
+    Total Energy: 40E962A28972EB3C  5.1989079278430407E+04
+    Total Mass:   6.5682492247377994E+19, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    1.528E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    2.778E-01
