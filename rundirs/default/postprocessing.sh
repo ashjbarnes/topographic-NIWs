@@ -12,4 +12,4 @@ PYTHONNOUSERSITE=1
 module use /g/data/hh5/public/modules
 module load conda/analysis3-unstable
 module list
-python3 ../../postprocessing.py -e "$CWD"
+python3 ../../../postprocess.py -e "$CWD"
