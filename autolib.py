@@ -16,7 +16,7 @@ basepath = Path.cwd().absolute()
 def setup_mom6(exptname,perturbation,overrides = [],walltime = None,default_dir = "default",run_duration = False):
     ## If common forcing is provided, set another input folder that contains the windstress for all runs in this experiment
     default_dir = basepath / "rundirs" / default_dir
-
+    perturbation = str(perturbation)
     runpath = basepath / "rundirs" / exptname / f"{exptname}_{perturbation}"
     runpath.mkdir(parents = True,exist_ok = True)
 
