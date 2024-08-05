@@ -31,7 +31,7 @@ def setup_mom6(exptname,perturbation,overrides = [],walltime = None,default_dir 
     
     for line in range(len(config)):
         if "jobname" in config[line][0:10]:
-            config[line] = "jobname: " + perturbation + "\n"
+            config[line] = "jobname: " + exptname + "_" + perturbation + "\n"
             
         if "input" in config[line][0:10]:
             if perturbation != "common":
