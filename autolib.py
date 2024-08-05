@@ -391,11 +391,12 @@ class expt:
         setup_mom6(self.variable,self.var_value,overrides = self.overrides)
         return
 
-    def run(self):
+    def run(self,fast = False):
         print("RUNNING: " + self.path.name)
-        subprocess.run(
-           f"payu setup -f",shell= True,cwd = str(self.path)
-        )
+        if not fast:
+            subprocess.run(
+            f"payu setup -f",shell= True,cwd = str(self.path)
+            )
 
         subprocess.run(
            f"payu run -f",shell= True,cwd = str(self.path)
