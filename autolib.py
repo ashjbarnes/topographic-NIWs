@@ -182,7 +182,7 @@ def windstress_gaussian(forcing_latwidth = 100,duration = 5,strength = 1,nx=1000
             
     return strength * STRESS_X
 
-def eta_gaussian_hill(height=500,width=25,nx=1000,ny=1000,nlayers=5,H=4000,ridge = False,gridspacing = 2,**kwargs):
+def eta_gaussian_hill(height=500,width=12.5,nx=1000,ny=1000,nlayers=5,H=4000,ridge = False,gridspacing = 2,**kwargs):
     width /= gridspacing
     hbottom = np.zeros((ny, nx))
     restintefaceheights = np.linspace(0,-1 * (H - H/nlayers),nlayers)
