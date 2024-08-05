@@ -37,7 +37,7 @@ def postprocess(rundir):
     print(current_output)
 
 
-    for file in ["u.nc","v.nc","e.nc","taux.nc","pbo.nc"]:
+    for file in ["u.nc","v.nc","e.nc","taux.nc"]:
         data = xr.open_dataarray(current_output / file)
         if "xq" in data.dims:
             zonal = data.sel(yh = slice(-10,10))
