@@ -131,8 +131,8 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3000
 C_P = 3925.0       ! heat capacity of sea water
 
 ! Time integration parameters
-DT = 1200.0 !1200.0                      ! baroclinic dynamics time step (was 1200.0s)
-DT_THERM = 1200.0 !1200.0                ! thermodynamcis and tracer advection time step (was 7200.0s)
+DT = 600.0 !1200.0                      ! baroclinic dynamics time step (was 1200.0s)
+DT_THERM = 3600.0 !1200.0                ! thermodynamcis and tracer advection time step (was 7200.0s)
 ! MIN_Z_DIAG_INTERVAL = 2.16E+04   ! the minimum amount of time in seconds between calculations of
                                  ! depth-space diagnostics, making this > DT_THERM reduces the performance penalty
                                  ! of regridding to depth online
