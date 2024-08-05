@@ -188,8 +188,11 @@ def eta_gaussian_hill(height=500,width=12.5,nx=1000,ny=1000,nlayers=5,H=4000,rid
     
     x,y = np.meshgrid(np.arange(nx),np.arange(ny))
     
-    hbottom = height * np.exp(-1 * (x - nx//2)**2/(2 * width)) 
-    
+    hbottom = height * np.exp(- ( 
+                               (2 * (x - nx//2)) /  width
+                               )**2
+    ) 
+
     if ridge == False:
         hbottom *= np.exp(-1 * (y - ny//2)**2/(2 * width))
     
