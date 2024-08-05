@@ -1,4 +1,5 @@
 from pathlib import Path
+import subprocess
 import os
 import sys
 import xarray as xr
@@ -28,13 +29,8 @@ def postprocess(rundir):
     ## Check whether we've already run for long enough
 
     outputs = list(rundir.glob("archive/output*"))
-    if len(outputs) == int(duration):
-        ## Need to switch off forcing in the MOM_override file
-        with open(rundir / "MOM_override", 'a') as file:
-            file.write("#override WIND_CONFIG = 'const'\n")
-            file.write("#override CONST_WIND_TAUX = 0\n")
-            file.write("#override CONST_WIND_TAUY = 0\n")
-    
+
+   
     ## Now cut out the data we want to keep and save to archive
 
     current_output = rundir / "archive" / f"output{(len(outputs) - 1):03}" 
@@ -56,6 +52,16 @@ def postprocess(rundir):
         zonal.to_netcdf(archive / "zonal" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
         merid.to_netcdf(archive / "merid" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
 
+
+    with open(rundir / "MOM_override", 'a') as file:
+        file.write("#override WIND_CONFIG = 'const'\n")
+        file.write("#override CONST_WIND_TAUX = 0\n")
+        file.write("#override CONST_WIND_TAUY = 0\n")
+
+    ## Now run the model for the rest of the duration
+    subprocess.run(
+        f"payu run -f -n 5",shell= True,cwd = str(rundir)
+    )
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-e', '--expt', type=str, help='Experiment',default = "common")
