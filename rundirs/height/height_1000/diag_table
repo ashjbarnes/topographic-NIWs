@@ -3,11 +3,11 @@
 
 # filename , saving frequency , saving freq unit , always 1 , time units , time axis name 
 #"prog_hourly",     1, "hours",  1, "hours", "time",
-"u_10min",	10, "minutes", 1  , "seconds" , "time",
-"v_10min",	10, "minutes", 1  , "seconds" , "time",
-"taux_10min",	   10, "minutes", 1  , "seconds" , "time",
-"e_10min",	10, "minutes", 1  , "seconds" , "time",
-"rho_10min",    10, "minutes", 1  , "seconds" , "time",
+"u_20min",	20, "minutes", 1  , "seconds" , "time",
+"v_20min",	20, "minutes", 1  , "seconds" , "time",
+"taux_20min",	20, "minutes", 1  , "seconds" , "time",
+"e_20min",	20, "minutes", 1  , "seconds" , "time",
+"rho_20min",    20, "minutes", 1  , "seconds" , "time",
 #"pbo_10min",    10, "minutes", 1  , "seconds" , "time",
 #"prog",     1, "days",  1, "days", "time",
 
