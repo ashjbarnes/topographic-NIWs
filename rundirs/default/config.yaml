@@ -13,7 +13,6 @@ shortpath: /scratch/v45
 exe: /g/data/v45/ab8992/mom_executables/noforcing_symmetric
 
 input:
-     - /home/149/ab8992/topographic-NIWs/inputdir/common
 
 storage: 
     gdata: 
