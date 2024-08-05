@@ -26,7 +26,7 @@
     months = 0
     days = 0
     date_init = 1, 1, 1, 0, 0, 0
-    hours = 1
+    hours = 10
     minutes = 0
     seconds = 0
     calendar = 'NOLEAP'
