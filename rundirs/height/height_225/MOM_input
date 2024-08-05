@@ -136,12 +136,8 @@ DT_THERM = 3600.0 !1200.0                ! thermodynamcis and tracer advection t
 ! MIN_Z_DIAG_INTERVAL = 2.16E+04   ! the minimum amount of time in seconds between calculations of
                                  ! depth-space diagnostics, making this > DT_THERM reduces the performance penalty
                                  ! of regridding to depth online
-DT_FORCING = 1200.0 !1200.0              ! time step for changing forcing (was 7200.0s)
+DT_FORCING = 600.0 !1200.0              ! time step for changing forcing (was 7200.0s)
 DTBT = -0.98                     ! barotropic time step 
-DTBT_RESET_PERIOD = 0.0          ! the period between recalculations of DTBT (if DTBT <= 0).
-BEBT = 0.2                       ! whether barotropic time stepping uses the forward-backward time-
-                                 ! stepping scheme (0) or a backward Euler scheme (1).
-                                 ! ratio from forward-backward to backward Euler scheme
 
 VARIABLE_WINDS = True          !   [Boolean] default = True
                                 ! If true, the winds vary in time after the initialization.
