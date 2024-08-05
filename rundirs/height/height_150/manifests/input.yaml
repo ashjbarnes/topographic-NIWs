@@ -9,7 +9,7 @@ work/INPUT/driver-layers-topo-densities.nc:
 work/INPUT/storm_windstress.nc:
   fullpath: /home/149/ab8992/topographic-NIWs/inputdir/common/storm_windstress.nc
   hashes:
-    binhash: cd82b2dec18300611efcaa261d100620
+    binhash: 489dc1f74a0498d09ebc696b7d10d300
     md5: 6329fb337ef30ce2beeaf261c6a39926
 work/INPUT/vcoord.nc:
   fullpath: /home/149/ab8992/topographic-NIWs/inputdir/common/vcoord.nc
