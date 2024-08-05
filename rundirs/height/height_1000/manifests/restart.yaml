@@ -1,3 +1,38 @@
 format: yamanifest
 version: 1.0
---- {}
+---
+work/INPUT/MOM.res.nc:
+  fullpath: /scratch/v45/ab8992/mom6/archive/height_1000/restart000/MOM.res.nc
+  hashes:
+    binhash: 1a882cbc38386c89659a2faead3a4263
+    md5: cb4262960b9f6bad5fbb1463a6a332af
+work/INPUT/MOM.res_1.nc:
+  fullpath: /scratch/v45/ab8992/mom6/archive/height_1000/restart000/MOM.res_1.nc
+  hashes:
+    binhash: 1210f3bbd4853a97ad6892017112abe1
+    md5: e60314211386c5c2beeb128461988006
+work/INPUT/MOM.res_2.nc:
+  fullpath: /scratch/v45/ab8992/mom6/archive/height_1000/restart000/MOM.res_2.nc
+  hashes:
+    binhash: e684ab88ce37eac69254a7933c16092e
+    md5: 6717b824928deb7fbdb8cc35fc25710c
+work/INPUT/MOM.res_3.nc:
+  fullpath: /scratch/v45/ab8992/mom6/archive/height_1000/restart000/MOM.res_3.nc
+  hashes:
+    binhash: 789ff3fd66bc4a75259504b4d6ec2d10
+    md5: 06ec0d8538a621fd36e2d7c4063784d2
+work/INPUT/MOM.res_4.nc:
+  fullpath: /scratch/v45/ab8992/mom6/archive/height_1000/restart000/MOM.res_4.nc
+  hashes:
+    binhash: 80b0d6a78e9b59fda55ff39686cdf91c
+    md5: 9a351b49ef38fbb988f144aea1804c60
+work/INPUT/MOM.res_5.nc:
+  fullpath: /scratch/v45/ab8992/mom6/archive/height_1000/restart000/MOM.res_5.nc
+  hashes:
+    binhash: 96996b51927a92b4cdd294037c799a6b
+    md5: 347f8ce5f17050ba5a00c061abc093f4
+work/INPUT/ocean_solo.res:
+  fullpath: /scratch/v45/ab8992/mom6/archive/height_1000/restart000/ocean_solo.res
+  hashes:
+    binhash: 8c96714b765a10db7eb8a385b970136d
+    md5: 708f164298ec49742dce8ac9f985299b
