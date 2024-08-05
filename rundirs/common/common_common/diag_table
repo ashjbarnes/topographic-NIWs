@@ -18,9 +18,9 @@
 #"ocean_model","taux",   "taux",   "prog_hourly","all",.false.,"none",2
 #"ocean_model","e","e","prog_hourly","all",.false.,"none",2
 
-"ocean_model_z","u",   "u",   "u_10min","all",.false.,"none",2
-"ocean_model_z","v",   "v",   "v_10min","all",.false.,"none",2
-"ocean_model_z","Rho_cv",   "rho",   "rho_10min","all",.false.,"none",1
+"ocean_model","u",   "u",   "u_10min","all",.false.,"none",2
+"ocean_model","v",   "v",   "v_10min","all",.false.,"none",2
+"ocean_model","Rho_cv",   "rho",   "rho_10min","all",.false.,"none",1
 "ocean_model","taux",   "taux",   "taux_10min","all",.false.,"none",2
 "ocean_model","e","e","e_10min","all",.false.,"none",2
 "ocean_model","pbo","pbo","pbo_10min","all",.false.,"none",1
