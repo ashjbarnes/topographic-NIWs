@@ -59,9 +59,10 @@ def postprocess(rundir):
         file.write("#override CONST_WIND_TAUY = 0\n")
 
     ## Now run the model for the rest of the duration
-    subprocess.run(
-        f"payu run -f -n 5",shell= True,cwd = str(rundir)
-    )
+    if len(outputs) == 1:
+        subprocess.run(
+            f"payu run -f -n 5",shell= True,cwd = str(rundir)
+        )
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-e', '--expt', type=str, help='Experiment',default = "common")
