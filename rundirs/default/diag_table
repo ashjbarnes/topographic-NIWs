@@ -8,7 +8,7 @@
 "taux_10min",	   10, "minutes", 1  , "seconds" , "time",
 "e_10min",	10, "minutes", 1  , "seconds" , "time",
 "rho_10min",    10, "minutes", 1  , "seconds" , "time",
-"pbo_10min",    10, "minutes", 1  , "seconds" , "time",
+#"pbo_10min",    10, "minutes", 1  , "seconds" , "time",
 #"prog",     1, "days",  1, "days", "time",
 
 
@@ -23,4 +23,4 @@
 "ocean_model","Rho_cv",   "rho",   "rho_10min","all",.false.,"none",1
 "ocean_model","taux",   "taux",   "taux_10min","all",.false.,"none",2
 "ocean_model","e","e","e_10min","all",.false.,"none",2
-"ocean_model","pbo","pbo","pbo_10min","all",.false.,"none",1
+#"ocean_model","pbo","pbo","pbo_10min","all",.false.,"none",1
