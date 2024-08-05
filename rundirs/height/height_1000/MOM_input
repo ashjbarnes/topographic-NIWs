@@ -137,8 +137,8 @@ DT_THERM = 1200.0 !1200.0                ! thermodynamcis and tracer advection t
                                  ! depth-space diagnostics, making this > DT_THERM reduces the performance penalty
                                  ! of regridding to depth online
 DT_FORCING = 1200.0 !1200.0              ! time step for changing forcing (was 7200.0s)
-DTBT = -0.98                     ! barotropic time step 
-DTBT_RESET_PERIOD = 0.0          ! the period between recalculations of DTBT (if DTBT <= 0).
+DTBT = 3600.0                     ! barotropic time step 
+!DTBT_RESET_PERIOD = 0.0          ! the period between recalculations of DTBT (if DTBT <= 0).
 BEBT = 0.2                       ! whether barotropic time stepping uses the forward-backward time-
                                  ! stepping scheme (0) or a backward Euler scheme (1).
                                  ! ratio from forward-backward to backward Euler scheme
