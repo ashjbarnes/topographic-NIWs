@@ -243,3 +243,19 @@ WARNING from PE     0: Unused line in MOM_override : #override WESTLAT = -2000.0
 
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200000000.
 NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  200100000.
+NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to  204000000.
+MOM Date      1/01/01 00:00:00      0: En 1.562284E-15, MaxCFL  0.00000, Mass 6.536393797902E+19
+    Total Energy: 40F8EE50281CE403  1.0211700979317729E+05
+    Total Mass:   6.5363937979024007E+19, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    7.986E-02
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    1.528E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    2.188E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    2.778E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    3.299E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    3.750E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.132E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.444E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.688E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.861E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    4.965E-01
+NOTE from PE     0: MOM_vert_friction: updateCFLtruncationValue set CFL limit to    5.000E-01
