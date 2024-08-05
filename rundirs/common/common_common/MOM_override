@@ -12,3 +12,6 @@
 #override LENLAT = 4000.0
 #override WESTLAT = -2000.0
 #override NK = 50
+#override WIND_CONFIG = 'const'
+#override CONST_WIND_TAUX = 0
+#override CONST_WIND_TAUY = 0
