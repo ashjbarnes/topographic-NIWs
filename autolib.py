@@ -56,18 +56,6 @@ def setup_mom6(exptname,perturbation,overrides = [],walltime = None,default_dir 
     file = open(runpath / "MOM_override","w")
     file.writelines(override_file)
 
-    if run_duration != False:
-        ## Update run duration
-        file = open(runpath / "input.nml","r")
-        input_file = file.readlines()
-        file.close()
-        
-        for line in range(len(input_file)):
-            if "hours = " in input_file[line]:
-                input_file[line] = f"    hours = {run_duration}\n"
-            
-        file = open(runpath / "input.nml","w")
-        file.writelines(input_file)
 
     
     return
@@ -354,95 +342,66 @@ def set_si_coords(array):
 
 
 class expt:
-    def __init__(self,x,y,nlayers,variable,var_value,topo,common):
+    def __init__(self,x,y,nlayers,variable,var_value,overrides = []):
         self.nlayers = nlayers
         self.variable = variable
         self.var_value = var_value
-        self.topo = topo
-        self.common = common
         self.x = x
         self.y = y
-        self.runname = f"{self.variable}_{self.topo}_{self.nlayers}layer_{self.variable}-{self.var_value}"
-        self.exptname = f"{self.variable}_{self.topo}_{self.nlayers}layer"
+        self.overrides = overrides
 
-        basepath
+    def make_inputs(self):
+    ## First, determine what needs to be generated. Wind, or topo    
 
-        if not os.path.exists(f"/home/149/ab8992/bottom_near_inertial_waves/{expt_suite_name}/{self.exptname}/{self.runname}"):
-            os.makedirs(f"/home/149/ab8992/bottom_near_inertial_waves/{expt_suite_name}/{self.exptname}/{self.runname}")
-
-        subprocess.run(f"ln -s /g/data/v45/ab8992/mom6_channel_configs/{expt_suite_name}/{self.exptname}/{self.runname} /home/149/ab8992/bottom_near_inertial_waves/{expt_suite_name}/{self.exptname}/{self.runname}/inputdir",shell=True)
-    
-    def make_topo(self):
-        if self.common == "windforcing":
+        if self.variable in ["height","topo_width","strat"]:
             ## Make topog file
-            ridge = self.topo == "ridge"
             eta = eta_gaussian_hill(
                 nlayers=self.nlayers,
-                ridge=ridge,
                 nx = len(self.x),
                 ny = len(self.y),
                 **{self.variable : self.var_value}
                 )
-
-            save_topo(self.x,
+            save_inputdata(self.x,
                  self.y,
                  None,
                  None,
                  eta,
-                 f"/{expt_suite_name}/{self.exptname}/{self.runname}",
+                 f"{self.variable}_{self.var_value}",
                  savewind = False,
                  **{self.variable : self.var_value}
                  )
-        elif self.common == "topog":
+            
+        else:
             ## Make and save wind stress
             STRESS_X = windstress_gaussian(nx = len(self.x),
                                            ny = len(self.y),
-                                           reverse = True,
                                            **{self.variable : self.var_value})
-            save_topo(self.x,
+            save_inputdata(self.x,
                 self.y,
                 STRESS_X,
                 STRESS_X * 0,
                 np.zeros((1,len(self.y),len(self.x))),
-                f"/{expt_suite_name}/{self.exptname}/{self.runname}",
+                f"{self.variable}_{self.var_value}",
                 savedensities = False
                 )
         return
     
     def setup(self,overrides = None,walltime = None,default_dir = None,run_duration = 10,forcing_path=None):
-        print("SETUP: " + self.runname)
-
-
-        if forcing_path == None:
-            forcing_path = f"{expt_suite_name}/{self.exptname}/{self.runname}" 
-
-        if self.common == "topog":
-            common_forcing_path = f"{expt_suite_name}_common_{self.topo}_{self.nlayers}layers"
-        elif self.common == "windforcing":
-            common_forcing_path = f"{expt_suite_name}_common_wind"
-        al.setup_mom6(f"{expt_suite_name}/{self.exptname}/{self.runname}",
-                    forcing_path,
-                    walltime = walltime,
-                    overrides = overrides + [f"NK={self.nlayers}"],
-                    common_forcing = f"{expt_suite_name}/common/{common_forcing_path}",
-                    default_dir=default_dir,
-                    run_duration = run_duration
-                    )   
-
-    def run(self):
-        print("RUNNING: " + self.runname)
-        al.run_mom6(f"{self.exptname}/{self.runname}")   
+        setup_mom6(self.variable,self.var_value,overrides = self.overrides)
         return
-    def set_noforcing(self):
+
+    def run(self,n = 1):
+        path = basepath / "rundirs" / self.variable / f"{self.variable}_{self.var_value}"
+        print("RUNNING: " + path.name)
         subprocess.run(
-            "/home/149/ab8992/bottom_near_inertial_waves/automated/forcing_off.sh",
-            cwd = f"/home/149/ab8992/bottom_near_inertial_waves/{expt_suite_name}/{self.exptname}/{self.runname}")        
-        return
-    def fastrun(self):
+           f"payu setup -f",shell= True,cwd = str(path)
+        )
+
         subprocess.run(
-            "payu run -f",shell= True,cwd = f"/home/149/ab8992/bottom_near_inertial_waves/{expt_suite_name}/{self.exptname}/{self.runname}"
+           f"payu run -f -n {n}",shell= True,cwd = str(path)
         )
         return
+
 
 
     def process_output(self,xrange = [-100,100], yrange = [-1510,-1490],tlim = None,outpath = None,integrate = True):
