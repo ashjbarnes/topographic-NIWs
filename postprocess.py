@@ -62,7 +62,7 @@ def postprocess(rundir):
     ## Now run the model for the rest of the duration
     if len(outputs) == 1:
         subprocess.run(
-            f"payu run -f -n 5",shell= True,cwd = str(rundir)
+            f"payu run -f -n 10",shell= True,cwd = str(rundir)
         )
 
 parser = argparse.ArgumentParser()
