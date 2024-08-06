@@ -53,13 +53,14 @@ def postprocess(rundir):
         merid.to_netcdf(archive / "merid" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
 
 
-    with open(rundir / "MOM_override", 'a') as file:
-        file.write("#override WIND_CONFIG = 'const'\n")
-        file.write("#override CONST_WIND_TAUX = 0\n")
-        file.write("#override CONST_WIND_TAUY = 0\n")
-
     ## Now run the model for the rest of the duration
     if len(outputs) == 1:
+
+        with open(rundir / "MOM_override", 'a') as file:
+            file.write("#override WIND_CONFIG = 'const'\n")
+            file.write("#override CONST_WIND_TAUX = 0\n")
+            file.write("#override CONST_WIND_TAUY = 0\n")
+            
         subprocess.run(
             f"payu run -f -n 10",shell= True,cwd = str(rundir)
         )
