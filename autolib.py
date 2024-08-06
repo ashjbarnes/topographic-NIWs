@@ -105,21 +105,39 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
     
     if savewind == True:
         windfilename = outfolder / 'storm_windstress.nc'
-        ncOutput = Dataset(windfilename, 'w',format="NETCDF4")
-        ncOutput.createDimension('x', eta.shape[2])
-        ncOutput.createDimension('y', eta.shape[1])
-        ncOutput.createDimension('Time', size = None)
-        ncX = ncOutput.createVariable('x', 'float', ('x', ))
-        ncX[:] = x
-        ncY = ncOutput.createVariable('y', 'float', ('y', ))
-        ncY[:] = y
-        nctime = ncOutput.createVariable('Time', 'float', ('Time', ))
-        nctime[:] = np.arange(STRESS_X.shape[0]) * 5
-        ncSX = ncOutput.createVariable('STRESS_X', 'float', ('Time','y','x'))
-        ncSX[:] = STRESS_X
-        ncSY = ncOutput.createVariable('STRESS_Y', 'float', ('Time','y', 'x'))
-        ncSY[:] = STRESS_Y
-        ncOutput.close()
+
+        dataset = xr.Dataset(
+            data_vars = {
+                "STRESS_X":(["Time","y","x"],STRESS_X),
+                "STRESS_Y":(["Time","y","x"],STRESS_Y)
+            },
+            coords = {
+                "x":x,
+                "y":y,
+                "Time":np.arange(STRESS_X.shape[0]) * 5
+            }
+        )
+        dataset.to_netcdf(windfilename, unlimited_dims=["time"])
+
+        ## Make the time dimension unlimited
+    
+
+        # ncOutput = Dataset(windfilename, 'w',format="NETCDF4")
+        # ncOutput.createDimension('x', eta.shape[2])
+        # ncOutput.createDimension('y', eta.shape[1])
+        # ncOutput.createDimension('Time', size = None)
+        # ncX = ncOutput.createVariable('x', 'float', ('x', ))
+        # ncX[:] = x
+        # ncY = ncOutput.createVariable('y', 'float', ('y', ))
+        # ncY[:] = y
+        # nctime = ncOutput.createVariable('Time', 'float', ('Time', ))
+        # nctime[:] = np.arange(STRESS_X.shape[0]) * 5
+        # print(np.arange(STRESS_X.shape[0]) * 5)
+        # ncSX = ncOutput.createVariable('STRESS_X', 'float', ('Time','y','x'))
+        # ncSX[:] = STRESS_X
+        # ncSY = ncOutput.createVariable('STRESS_Y', 'float', ('Time','y', 'x'))
+        # ncSY[:] = STRESS_Y
+        # ncOutput.close()
     return
 
 def windstress_gaussian(forcing_latwidth = 100,duration = 5,strength = 1,nx=1000,ny=1000,forcing_lonwidth = None,reverse = True,gridspacing = 2,**kwargs):
