@@ -137,7 +137,7 @@ def windstress_gaussian(forcing_latwidth = 100,duration = 5,strength = 1,nx=1000
     forcing_period = (duration *2) * 60 #minutes. Force for 12hrs even if duration is much smaller for simplicity. 
     # npoints = (stationary_period + forcing_period + (60 - stationary_period)) // 2 #since there's a point every two minutes
     npoints = int((forcing_period ) // 5)  #since there's a point every 5 minutes
-    points_per_hour = 30
+    points_per_hour = 12
     hours_forcing = npoints / points_per_hour
     # windstress = np.real(T_sin2(np.linspace(0,hours_forcing,npoints),h = h,offset = stationary_period / 60))   # Inputs are in hours
     # windstress[npoints - 15:] = 0
