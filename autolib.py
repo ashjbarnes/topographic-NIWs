@@ -118,7 +118,7 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
             }
         )
         dataset.to_netcdf(
-            windfilename, unlimited_dims=["time"],
+            windfilename, unlimited_dims=["Time"],
             encoding = {"Time": {
                 "dtype": "double",
             }})
