@@ -117,7 +117,11 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
                 "Time":np.arange(STRESS_X.shape[0]) * 5
             }
         )
-        dataset.to_netcdf(windfilename, unlimited_dims=["time"])
+        dataset.to_netcdf(
+            windfilename, unlimited_dims=["time"]
+            encoding = {"Time": {
+                "dtype": "double",
+            }})
 
         ## Make the time dimension unlimited
     
