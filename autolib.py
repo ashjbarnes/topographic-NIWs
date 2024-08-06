@@ -78,11 +78,11 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         ## Create default layer densities for this number of layers
         nlayers = eta.shape[0] - 1
 
-        drho_tot = 4 ## Total change in salinity from surface to bottom
+        drho_tot = 42 ## Total change in salinity from surface to bottom
 
         drho_eff = (drho_tot * (nlayers - 1) / nlayers) / 2
 
-        rho_ref = 1027
+        rho_ref = 1025
         layerdensities = np.linspace(rho_ref - drho_eff * strat,rho_ref + drho_eff * strat,nlayers)
         driverfilename = outfolder / 'driver-layers-topo-densities.nc'
         ncOutput = Dataset(driverfilename, 'w', format='NETCDF4')
@@ -114,7 +114,7 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         ncY = ncOutput.createVariable('y', 'float', ('y', ))
         ncY[:] = y
         nctime = ncOutput.createVariable('Time', 'float', ('Time', ))
-        nctime[:] = STRESS_X.shape[0] * 5
+        nctime[:] = np.arange(STRESS_X.shape[0]) * 5
         ncSX = ncOutput.createVariable('STRESS_X', 'float', ('Time','y','x'))
         ncSX[:] = STRESS_X
         ncSY = ncOutput.createVariable('STRESS_Y', 'float', ('Time','y', 'x'))
