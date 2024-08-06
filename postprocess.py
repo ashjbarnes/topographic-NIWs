@@ -57,7 +57,8 @@ def postprocess(rundir):
         file.write("#override WIND_CONFIG = 'const'\n")
         file.write("#override CONST_WIND_TAUX = 0\n")
         file.write("#override CONST_WIND_TAUY = 0\n")
-
+        file.write("#override DT = 600")
+        file.write("#override DT_FORCING = 600")
     ## Now run the model for the rest of the duration
     if len(outputs) == 1:
         subprocess.run(
