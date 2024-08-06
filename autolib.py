@@ -114,7 +114,7 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         ncY = ncOutput.createVariable('y', 'float', ('y', ))
         ncY[:] = y
         nctime = ncOutput.createVariable('Time', 'float', ('Time', ))
-        nctime[:] = np.arange(0,STRESS_X.shape[0] * 2,2)
+        nctime[:] = np.arange(0,STRESS_X.shape[0] * 2,5)
         ncSX = ncOutput.createVariable('STRESS_X', 'float', ('Time','y','x'))
         ncSX[:] = STRESS_X
         ncSY = ncOutput.createVariable('STRESS_Y', 'float', ('Time','y', 'x'))
