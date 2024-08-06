@@ -1,3 +1,4 @@
 inputdir
 *outputdir*
 rundirs
+__pycache__
