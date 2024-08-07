@@ -78,7 +78,7 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         ## Create default layer densities for this number of layers
         nlayers = eta.shape[0] - 1
 
-        drho_tot = 42 ## Total change in salinity from surface to bottom
+        drho_tot = 2 ## Total change in salinity from surface to bottom
 
         drho_eff = (drho_tot * (nlayers - 1) / nlayers) / 2
 
