@@ -8,6 +8,18 @@ from dask.distributed import Client
 
 basepath = Path.cwd().absolute()
 
+def overwrite_in_file(filepath,old,new):
+    file = open(filepath,"r")
+    lines = file.readlines()
+    file.close()
+    for i in range(len(lines)):
+        if old in lines[i]:
+            lines[i] = new + "\n"
+    file = open(filepath,"w")
+    file.writelines(lines)
+    file.close()
+    return
+
 
 def postprocess(rundir):
     # Rundir is a path object
@@ -60,10 +72,14 @@ def postprocess(rundir):
             file.write("#override WIND_CONFIG = 'const'\n")
             file.write("#override CONST_WIND_TAUX = 0\n")
             file.write("#override CONST_WIND_TAUY = 0\n")
-            
+        overwrite_in_file(str((rundir / "input.nml").absolute()),
+                          "    hours = ",
+                          "    hours = 10"
+                          )
         subprocess.run(
             f"payu run -f -n 10",shell= True,cwd = str(rundir)
         )
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-e', '--expt', type=str, help='Experiment',default = "common")

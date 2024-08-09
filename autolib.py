@@ -563,4 +563,17 @@ class expt:
             subprocess.run(f"rm /home/149/ab8992/bottom_near_inertial_waves/{expt_suite_name}/{self.exptname}/{self.runname}/* -rf",shell = True)
         except:
             print(self.runname)
+
+
+def overwrite_in_file(filepath,old,new):
+    file = open(filepath,"r")
+    lines = file.readlines()
+    file.close()
+    for i in range(len(lines)):
+        if old in lines[i]:
+            lines[i] = new + "\n"
+    file = open(filepath,"w")
+    file.writelines(lines)
+    file.close()
+    return
     
