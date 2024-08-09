@@ -257,8 +257,8 @@ def get_energy_fluxes(exptname):
     ### Get the data
     merid = xr.open_mfdataset(f"/home/149/ab8992/topographic-NIWs/outputdir/{exptname}/merid/*.nc",decode_times = False,decode_cf = False).isel(xh = 0,xq = 0)
     zonal = xr.open_mfdataset(f"/home/149/ab8992/topographic-NIWs/outputdir/{exptname}/zonal/*.nc",decode_times = False,decode_cf = False).sel(yh = slice(-5,5),yq = slice(-5,5)).mean("yh").mean("yq")
-    zonal = zonal.interp(xq = zonal.xh).load()
-    merid = merid.interp(yq = merid.yh).load()
+    zonal = zonal.interp(xq = zonal.xh)
+    merid = merid.interp(yq = merid.yh)
 
     ## Calculate anomalies for the zonal part
     zon_u_anom = zonal.u - zonal.u.isel(xh = 0)
