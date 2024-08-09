@@ -175,13 +175,13 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         # ncOutput.close()
     return
 
-def windstress_gaussian(forcing_latwidth = 100,duration = 5,strength = 1,nx=1000,ny=1000,forcing_lonwidth = None,reverse = True,gridspacing = 2,**kwargs):
+def windstress_gaussian(forcing_width = 100,duration = 5,strength = 1,nx=1000,ny=1000,forcing_lonwidth = None,reverse = True,gridspacing = 2,**kwargs):
     ## Duration is a sin**2 function that lasts exactly as long as the duration. Spatially, Gaussian with width marking 3 Std Devs from centre
     
     ## MODIFICATION 24/7/23
     # When altering duration, need to change strength to include effect of increasing total energy in. This is linear - simply scale strength by deviation of duration from 5
 
-    forcing_latwidth = forcing_latwidth // gridspacing
+    forcing_width = forcing_width // gridspacing
 
     if duration != 5:
         strength *= 5 / duration
@@ -210,15 +210,15 @@ def windstress_gaussian(forcing_latwidth = 100,duration = 5,strength = 1,nx=1000
     ## Spread forcing over domain with decaying exponential towards boundaries
     STRESS_X = np.zeros([npoints,ny, nx])
 
-    ## Altered loop below so that forcing starts and finishes at forcing_latwidth
-    ylower = ny//2 - forcing_latwidth
-    yupper = ny//2 + forcing_latwidth
+    ## Altered loop below so that forcing starts and finishes at forcing_width
+    ylower = ny//2 - forcing_width
+    yupper = ny//2 + forcing_width
     
 
     for t in range(npoints):
         for j in range(ny):
             STRESS_X[t,j,:] = np.exp(- (
-                ((ny//2 - j - 0.5) * 2) / forcing_latwidth
+                ((ny//2 - j - 0.5) * 2) / forcing_width
                 )**2 
             )* windstress[t]
             
