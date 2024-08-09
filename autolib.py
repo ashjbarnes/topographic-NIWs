@@ -78,7 +78,7 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         ## Create default layer densities for this number of layers
         nlayers = eta.shape[0] - 1
 
-        drho_tot = 7 ## Total change in salinity from surface to bottom
+        drho_tot = 7 ## Total change in salinity from surface to bottom. This gives N = 40f
 
         drho_eff = (drho_tot * (nlayers - 1) / nlayers) / 2
 
@@ -221,40 +221,55 @@ def eta_gaussian_hill(height=500,width=12.5,nx=1000,ny=1000,nlayers=5,H=4000,rid
 
 def calculate_pressure(e,densities,pressure_type = "total"):
     nlayers = e.zi.shape[0] - 1
-    
+    """
+    This time, Just use the anomaly interface heights and density differences between layers!
+    """
     e_0 = e.isel(time = 0)
 
     e_anom = e - e_0
     
-    ref_density = densities.isel(zl = 0)
-    anom_densities = densities - ref_density
-    
-    pressure_anomaly = e.isel(zi = slice(0,nlayers)) * 0
+    pressure = e.isel(zi = slice(0,nlayers)) * 0
 
-    if "xh" in e.dims:
-        pressure_anomaly[:,0,:] =  9.8 * densities.isel(zl = 0) * (e.isel(zi = 0))
-        for i in range(1,nlayers):
-            pressure_anomaly[:,i,:] = 9.8 * (anom_densities.isel(zl = i)) * (e_anom.isel(zi = i))
+    delta_density = densities.diff("zl") ## This will have a lower dimension of nlayers - 1
 
-    else:
-        pressure_anomaly[:,0] =  9.8 * densities.isel(zl = 0) * (e.isel(zi = 0))
-        for i in range(1,nlayers):
-            pressure_anomaly[:,i] = 9.8 * (anom_densities.isel(zl = i)) * (e_anom.isel(zi = i))
+    # Now calculate actual pressure
+    pressure[{"zi":0}] =  9.8 * densities.isel(zl = 0) * (e.isel(zi = 0)) ## Surface contribution only
+
+    for i in range(1,nlayers):
+
+        pressure[{"zi":i}] = 9.8 * delta_density.isel(zl = i - 1) * e_anom.isel(zi = i)
             
 
     # pressure = pressure_anomaly.cumsum("zi")
     # pressure = pressure_anomaly.sum("zi")
     
     pressure = xr.DataArray(
-        data = pressure_anomaly.cumsum("zi"),
+        data = pressure.cumsum("zi"), 
         dims = e.rename({"zi":"zl"}).dims,
         # dims = ["time","zl","xh"],
         # coords = {"time":e.time.values,"zl":densities.zl.values,"xh":e.xh.values})
-        coords = e.drop("zi").coords)    
+        coords = e.drop_vars("zi").coords)    
     
     return pressure
 
+def get_energy_fluxes(exptname):
 
+    ### Get the data
+    merid = xr.open_mfdataset(f"/home/149/ab8992/topographic-NIWs/outputdir/{exptname}/merid/*.nc",decode_times = False,decode_cf = False).isel(xh = 0,xq = 0)
+    zonal = xr.open_mfdataset(f"/home/149/ab8992/topographic-NIWs/outputdir/{exptname}/zonal/*.nc",decode_times = False,decode_cf = False).sel(yh = slice(-5,5),yq = slice(-5,5)).mean("yh").mean("yq")
+    zonal = zonal.interp(xq = zonal.xh).load()
+    merid = merid.interp(yq = merid.yh).load()
+
+    ## Calculate anomalies for the zonal part
+    zon_u_anom = zonal.u - zonal.u.isel(xh = 0)
+    zon_pressure = calculate_pressure(zonal.e,zonal.u.zl)
+    zon_pressure_anom = zon_pressure - zon_pressure.isel(xh = 0)
+
+    zon_EF = (zon_u_anom * zon_pressure_anom).isel(zl = slice(0,None)).sum("zl")
+    merid_EF = (merid.v * calculate_pressure(merid.e,merid.v.zl)).isel(zl = slice(0,None)).sum("zl")
+
+    return xr.merge([zon_EF.rename("ZonEF"),merid_EF.rename("ZonEF")])
+    
 def sup_filter(field):
     FIELD = xrft.fft(field.load(),dim = "time")
     FIELD_filtered = FIELD.where(np.abs(FIELD.freq_time) > f,0)
