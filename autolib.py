@@ -101,6 +101,37 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         ncTopo = ncOutput.createVariable('topo', 'float', ('y', 'x'))
         ncTopo[:] = -eta[-1]
         ncOutput.close()
+
+        # Add mixed layer / thermocline
+        topo_file = xr.open_dataset(outfolder / 'driver-layers-topo-densities.nc')
+        # Create a new array with the additional value
+        new_interface_data = np.zeros(tuple(a + b for a,b in zip(topo_file.eta.shape, (1,0,0))))
+        new_interface_data[0,:,:] = topo_file.eta[0,:,:]
+        new_interface_data[1,:,:] = -50
+        new_interface_data[2:,:,:] = topo_file.eta[1:,:,:]
+
+        new_layers = np.zeros(21)
+        new_layers[0] = topo_file.Layer.values[0] - 3 ## This sets a lighter mixed layer with big gradient for thermocline
+        new_layers[1:] = topo_file.Layer.values
+
+        new_topo_file = xr.Dataset(
+            {
+                "eta": (("interface", "y","x"), new_interface_data),
+                "topo": (("y","x"), topo_file.topo.values)
+            },
+            coords = {
+                "x": topo_file.x.values,
+                "y": topo_file.y.values,
+                "Layer": new_layers
+            }
+        )
+
+        new_topo_file.eta.attrs = topo_file.eta.attrs
+        new_topo_file.topo.attrs = topo_file.topo.attrs
+        new_topo_file.Layer.attrs = topo_file.Layer.attrs
+        new_topo_file.to_netcdf(str(outfolder / "with_mixed_layer.nc"))
+
+
     # wind stress
     
     if savewind == True:
