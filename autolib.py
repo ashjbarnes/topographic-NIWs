@@ -422,7 +422,7 @@ class expt:
     def make_inputs(self):
     ## First, determine what needs to be generated. Wind, or topo    
 
-        if self.variable in ["height","topo_width","strat"]:
+        if self.variable in ["height","width","strat"]:
             ## Make topog file
             eta = eta_gaussian_hill(
                 nlayers=self.nlayers,
