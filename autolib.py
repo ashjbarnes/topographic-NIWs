@@ -184,7 +184,9 @@ def windstress_gaussian(forcing_width = 100,duration = 5,strength = 1,nx=1000,ny
     forcing_width = forcing_width // gridspacing
 
     if duration != 5:
-        strength *= 5 / duration
+        strength *= (5 / duration)
+    if forcing_width != 100:
+        strength *= (100 / forcing_width)
     #################################
 
     forcing_period = (duration *2) * 60 #minutes. Force for 12hrs even if duration is much smaller for simplicity. 
@@ -298,10 +300,11 @@ def get_energy_fluxes(exptname):
 
     zon_EF = (zon_u_anom * zon_pressure_anom).isel(zl = slice(0,None)).sum("zl")
     merid_EF = (merid.v * calculate_pressure(merid.e,merid.v.zl)).isel(zl = slice(0,None)).sum("zl")
-
+    
     return xr.merge([zon_EF.rename("ZonalEF"),merid_EF.rename("MeridEF")])
     
 def sup_filter(field):
+    f = 0.0001
     FIELD = xrft.fft(field.load(),dim = "time")
     FIELD_filtered = FIELD.where(np.abs(FIELD.freq_time) > f,0)
     return np.real(xrft.ifft(FIELD_filtered,dim = "freq_time"))
