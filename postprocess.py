@@ -23,7 +23,7 @@ def overwrite_in_file(filepath,old,new):
 def save_data(expt,run = "*"):
 
     basepath = Path("/home/149/ab8992/topographic-NIWs/rundirs") / expt.split("_")[0] / expt / "archive" / f"output{run}"
-
+    print("basepath ",basepath)
     u = xr.open_mfdataset(str(basepath) + "/u.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).sel(xq = 250,method = "nearest").u.load()
     ufar = xr.open_mfdataset(str(basepath) + "/u.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).isel(xq = 0).u.load()
     v = xr.open_mfdataset(str(basepath) + "/v.nc", decode_times = False,decode_cf = False).sel(xh = slice(-250,250)).sel(yq = 250,method = "nearest").v.load()
@@ -77,7 +77,7 @@ def postprocess(rundir):
     current_output = rundir / "archive" / f"output{(len(outputs) - 1):03}" 
     print(current_output)
 
-    save_data(rundir.parent.name,run = f"{(len(outputs) - 1):03}" )
+    save_data(rundir.name,run = f"{(len(outputs) - 1):03}" )
     # for file in ["u.nc","v.nc","e.nc","taux.nc"]:
     #     data = xr.open_dataarray(current_output / file)
     #     if "xq" in data.dims:

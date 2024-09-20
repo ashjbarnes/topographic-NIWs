@@ -175,12 +175,14 @@ def save_inputdata(x,y,STRESS_X,STRESS_Y,eta,tname,savewind =True,strat = 1,save
         # ncOutput.close()
     return
 
-def windstress_gaussian(forcing_width = 100,duration = 5,strength = 1,nx=1000,ny=1000,forcing_lonwidth = None,reverse = True,gridspacing = 2,**kwargs):
+def windstress_gaussian(forcing_width = 100,duration = 5,strength = 10,nx=1000,ny=1000,forcing_lonwidth = None,reverse = True,gridspacing = 2,**kwargs):
     ## Duration is a sin**2 function that lasts exactly as long as the duration. Spatially, Gaussian with width marking 3 Std Devs from centre
     
     ## MODIFICATION 24/7/23
     # When altering duration, need to change strength to include effect of increasing total energy in. This is linear - simply scale strength by deviation of duration from 5
 
+    ## MODIFICATION 20/9/24
+    # Strength is now in PA! Remove the old 0.5 prefix. Default is 10Pa to match at cat 4 storm
     forcing_width = forcing_width // gridspacing
 
     if duration != 5:
@@ -199,12 +201,12 @@ def windstress_gaussian(forcing_width = 100,duration = 5,strength = 1,nx=1000,ny
     
     tgrid = np.linspace(0,hours_forcing,npoints)
     offset = 0 # Redundant now
-    windstress = 0.5 * np.sin(np.pi * (tgrid - offset)/duration)**2
+    windstress = 1 * np.sin(np.pi * (tgrid - offset)/duration)**2
 
     windstress *= (offset < tgrid) # remove forcing during the offset (at rest) period
     windstress *= (offset + duration > tgrid) # remove forcing during after forcing has finished (don't let sinusoid start again)
     if reverse == True:
-        windstress2 = -0.5 * np.sin(np.pi * (tgrid - offset - duration)/duration)**2
+        windstress2 = -1 * np.sin(np.pi * (tgrid - offset - duration)/duration)**2
 
         windstress2 *= (duration + offset < tgrid) # remove forcing during the offset (at rest) period
         windstress2 *= (offset + 2 * duration > tgrid) # remove forcing during after forcing has finished (don't let sinusoid start again)
@@ -227,7 +229,7 @@ def windstress_gaussian(forcing_width = 100,duration = 5,strength = 1,nx=1000,ny
             
     return strength * STRESS_X
 
-def eta_gaussian_hill(height=500,width=12.5,nx=1000,ny=1000,nlayers=5,H=4000,ridge = True,gridspacing = 2,**kwargs):
+def eta_gaussian_hill(height=1000,width=12.5,nx=1000,ny=1000,nlayers=5,H=4000,ridge = True,gridspacing = 2,**kwargs):
     width /= gridspacing
     hbottom = np.zeros((ny, nx))
     restintefaceheights = np.linspace(0,-1 * (H - H/nlayers),nlayers)
