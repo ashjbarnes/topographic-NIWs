@@ -5,7 +5,7 @@ import sys
 import xarray as xr
 import argparse
 from dask.distributed import Client
-
+import autolib as al
 basepath = Path.cwd().absolute()
 
 def overwrite_in_file(filepath,old,new):
@@ -20,6 +20,35 @@ def overwrite_in_file(filepath,old,new):
     file.close()
     return
 
+def save_data(expt,run = "*"):
+
+    basepath = Path("/home/149/ab8992/topographic-NIWs/rundirs") / expt.split("_")[0] / expt / "archive" / f"output{run}"
+
+    u = xr.open_mfdataset(str(basepath) + "/u.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).sel(xq = 250,method = "nearest").u.load()
+    ufar = xr.open_mfdataset(str(basepath) + "/u.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).isel(xq = 0).u.load()
+    v = xr.open_mfdataset(str(basepath) + "/v.nc", decode_times = False,decode_cf = False).sel(xh = slice(-250,250)).sel(yq = 250,method = "nearest").v.load()
+
+    eEastFar = xr.open_mfdataset(str(basepath) + "/e.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).isel(xh = 0).e.load()
+
+    eEast = xr.open_mfdataset(str(basepath) + "/e.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).sel(xh = 250,method = "nearest").e.load()
+    eNorth = xr.open_mfdataset(str(basepath) + "/e.nc", decode_times = False,decode_cf = False).sel(xh = slice(-250,250)).sel(yh = 250,method = "nearest").e.load()
+
+    pEast = al.calculate_pressure(eEast,u.zl)
+    pEastFar = al.calculate_pressure(eEastFar,u.zl)
+    pNorth = al.calculate_pressure(eNorth,u.zl)
+
+    pEast = pEast - pEast.isel(time = 0)
+    pEastFar = pEastFar - pEastFar.isel(time = 0)
+    pNorth = pNorth - pNorth.isel(time = 0)
+
+    out = xr.merge([u - ufar,v,(pEast - pEastFar).rename("pEast"),pNorth.rename("pNorth")]).load()
+    outpath = Path("/g/data/v45/ab8992/bottom-niws-outputs/sept2024-bniw-outputs/") / expt.split("_")[0] / expt
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)
+    if run == "*":
+        run = "all"
+    out.to_netcdf(outpath / f"{expt}_{run}.nc")
+    return 
 
 def postprocess(rundir):
     # Rundir is a path object
@@ -48,21 +77,21 @@ def postprocess(rundir):
     current_output = rundir / "archive" / f"output{(len(outputs) - 1):03}" 
     print(current_output)
 
+    save_data(rundir.parent.name,run = f"{(len(outputs) - 1):03}" )
+    # for file in ["u.nc","v.nc","e.nc","taux.nc"]:
+    #     data = xr.open_dataarray(current_output / file)
+    #     if "xq" in data.dims:
+    #         zonal = data.sel(yh = slice(-10,10))
+    #         merid = data.isel(xq = slice(0,10))
+    #     elif "yq" in data.dims:
+    #         zonal = data.sel(yq = slice(-10,10))
+    #         merid = data.isel(xh = slice(0,10))
+    #     else:
+    #         zonal = data.sel(yh = slice(-10,10))
+    #         merid = data.isel(xh = slice(0,10))
 
-    for file in ["u.nc","v.nc","e.nc","taux.nc"]:
-        data = xr.open_dataarray(current_output / file)
-        if "xq" in data.dims:
-            zonal = data.sel(yh = slice(-10,10))
-            merid = data.isel(xq = slice(0,10))
-        elif "yq" in data.dims:
-            zonal = data.sel(yq = slice(-10,10))
-            merid = data.isel(xh = slice(0,10))
-        else:
-            zonal = data.sel(yh = slice(-10,10))
-            merid = data.isel(xh = slice(0,10))
-
-        zonal.to_netcdf(archive / "zonal" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
-        merid.to_netcdf(archive / "merid" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
+    #     zonal.to_netcdf(archive / "zonal" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
+    #     merid.to_netcdf(archive / "merid" / f"{file.split('.nc')[0]}_{len(outputs) - 1}.nc")
 
 
     ## Now run the model for the rest of the duration
@@ -74,7 +103,7 @@ def postprocess(rundir):
             file.write("#override CONST_WIND_TAUY = 0\n")
         overwrite_in_file(str((rundir / "input.nml").absolute()),
                           "    hours = ",
-                          "    hours = 10"
+                          "    hours = "
                           )
         subprocess.run(
             f"payu run -f -n 10",shell= True,cwd = str(rundir)
