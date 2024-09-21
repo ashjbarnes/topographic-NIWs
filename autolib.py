@@ -488,6 +488,15 @@ class expt:
            f"payu run -f",shell= True,cwd = str(self.path)
         )
         return
+    
+    def resume(self):
+
+        outputs = len(list(self.path.glob("archive/output*")))
+        print("Total outputs: " + str(outputs))
+        subprocess.run(
+            f"payu run -f -n {10 - outputs}",shell= True,cwd = str(self.path)
+            )
+        
 
     def load(self):
         zonal = xr.open_mfdataset([i for i in (basepath / "outputdir" / f"{self.variable}_{self.var_value}" / "zonal").glob("*.nc")],decode_times = False,parallel = True)
