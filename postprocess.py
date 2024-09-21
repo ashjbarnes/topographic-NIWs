@@ -103,7 +103,7 @@ def postprocess(rundir):
             file.write("#override CONST_WIND_TAUY = 0\n")
         overwrite_in_file(str((rundir / "input.nml").absolute()),
                           "    hours = ",
-                          "    hours = "
+                          "    hours = 10"
                           )
         subprocess.run(
             f"payu run -f -n 10",shell= True,cwd = str(rundir)
