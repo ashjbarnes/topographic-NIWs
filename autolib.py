@@ -245,7 +245,7 @@ def windstress_gaussian(forcing_width = 100,duration = 5,strength = 10,nx=1000,n
             )* windstress[t]
             
             
-    return strength * STRESS_X
+    return 0.5 * strength * STRESS_X
 
 def eta_gaussian_hill(height=1000,width=12.5,nx=1000,ny=1000,nlayers=5,H=4000,ridge = True,gridspacing = 2,**kwargs):
     width /= gridspacing
