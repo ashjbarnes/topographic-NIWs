@@ -28,9 +28,10 @@ def overwrite_in_file(filepath,old,new):
 
 def setup_mom6(exptname,perturbation,overrides = [],walltime = None,default_dir = "default"):
 
-    duration = "10"
+    duration = 5
     if "duration" in exptname:
-        duration = exptname.split("_")[-1]
+        duration = int(exptname.split("_")[-1])
+    duration *= 2
     ## If common forcing is provided, set another input folder that contains the windstress for all runs in this experiment
     default_dir = basepath / "rundirs" / default_dir
     perturbation = str(perturbation)
@@ -73,7 +74,7 @@ def setup_mom6(exptname,perturbation,overrides = [],walltime = None,default_dir 
     file = open(runpath / "MOM_override","w")
     file.writelines(override_file)
 
-    overwrite_in_file(f"{runpath}/input.nml","    hours = ","    hours = " + duration)
+    overwrite_in_file(f"{runpath}/input.nml","    hours = ","    hours = " + str(duration))
 
     
     return
@@ -588,15 +589,5 @@ class expt:
             print(self.runname)
 
 
-def overwrite_in_file(filepath,old,new):
-    file = open(filepath,"r")
-    lines = file.readlines()
-    file.close()
-    for i in range(len(lines)):
-        if old in lines[i]:
-            lines[i] = new + "\n"
-    file = open(filepath,"w")
-    file.writelines(lines)
-    file.close()
-    return
+
     
