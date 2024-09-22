@@ -21,8 +21,12 @@ def overwrite_in_file(filepath,old,new):
     return
 
 def save_data(expt,run = "*"):
+    if "forcing_width" not in expt:
+        expt_base_name = expt.split("_")[0]
+    else:
+        expt_base_name = "forcing_width"
 
-    basepath = Path("/home/149/ab8992/topographic-NIWs/rundirs") / expt.split("_")[0] / expt / "archive" / f"output{run}"
+    basepath = Path("/home/149/ab8992/topographic-NIWs/rundirs") / expt_base_name / expt / "archive" / f"output{run}"
     print("basepath ",basepath)
     u = xr.open_mfdataset(str(basepath) + "/u.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).sel(xq = 250,method = "nearest").u.load()
     ufar = xr.open_mfdataset(str(basepath) + "/u.nc", decode_times = False,decode_cf = False).sel(yh = slice(-250,250)).isel(xq = 0).u.load()
@@ -42,7 +46,7 @@ def save_data(expt,run = "*"):
     pNorth = pNorth - pNorth.isel(time = 0)
 
     out = xr.merge([u - ufar,v,(pEast - pEastFar).rename("pEast"),pNorth.rename("pNorth")]).load()
-    outpath = Path("/g/data/v45/ab8992/bottom-niws-outputs/sept2024-bniw-outputs/") / expt.split("_")[0] / expt
+    outpath = Path("/g/data/v45/ab8992/bottom-niws-outputs/sept2024-bniw-outputs/") / expt_base_name / expt
     if not os.path.exists(outpath):
         os.makedirs(outpath)
     if run == "*":
@@ -108,6 +112,7 @@ def postprocess(rundir):
         subprocess.run(
             f"payu run -f -n 10",shell= True,cwd = str(rundir)
         )
+
 
 
 parser = argparse.ArgumentParser()
