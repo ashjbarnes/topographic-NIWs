@@ -12,4 +12,4 @@ module load conda/analysis3-24.04
 module list
 
 
-python3 /home/149/ab8992/topographic-NIWs -e "height" 
+python3 /home/149/ab8992/topographic-NIWs/get_efs.py -e "height" 
