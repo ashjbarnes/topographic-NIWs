@@ -70,9 +70,9 @@ def save_all_data(expt,run = "*"):
     ridge_width = 12500
     forcing_width = 100000
     if "forcing_width" in expt:
-        forcing_width = float(expt.split("_")[-1])
+        forcing_width = float(expt.split("_")[-1]) #! This needs to be m!
     if "width" in expt:
-        ridge_width = float(expt.split("_")[-1])
+        ridge_width = float(expt.split("_")[-1]) #! This needs to be m! Also should have been an elif statement...
 
 
     EF_EW = 1000 * (

@@ -3,3 +3,4 @@ inputdir
 rundirs
 __pycache__
 *revision*
+.vscode
