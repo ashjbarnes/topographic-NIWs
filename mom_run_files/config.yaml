@@ -1,0 +1,34 @@
+# Scheduler settings
+ncpus: 900
+walltime: 1:00:00
+jobname: common_common
+project: x77
+queue: normal
+qsub_flags: -W umask=027
+
+# Model settings
+model: mom6
+shortpath: /scratch/v45
+#exe: /g/data/v45/ab8992/mom_executables/no_forcing
+exe: /g/data/v45/ab8992/mom_executables/noforcing_symmetric
+
+input:
+
+storage: 
+    gdata: 
+        - v45
+    scratch:
+        - v45
+
+mpi:
+    module: openmpi/4.0.1
+
+runlog: False
+# Postprocessing
+collate: False
+#userscripts:
+#    archive: sync_output_to_gdata.sh
+
+postscript:
+  postprocessing.sh
+

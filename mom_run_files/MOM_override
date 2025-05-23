@@ -1,0 +1,7 @@
+! FORCING_DURATION 10
+
+#override ADIABATIC = True
+#override TOPO_FILE = "with_mixed_layer.nc"
+#override COORD_FILE = "with_mixed_layer.nc"
+#override THICKNESS_FILE = "with_mixed_layer.nc"
+
